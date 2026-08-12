@@ -7,7 +7,13 @@ authors = [
     { name = "Welepy-dev", email = "mwsilva.contato@gmail.com" }
 ]
 requires-python = ">=3.14"
-dependencies = []
+dependencies = [
+    "matplotlib>=3.11.1",
+    "numpy>=2.5.2",
+    "pandas>=3.0.5",
+    "requests>=2.34.2",
+    "seaborn>=0.13.2",
+]
 
 [project.scripts]
 fc-sentiment-analysis = "fc_sentiment_analysis:main"
