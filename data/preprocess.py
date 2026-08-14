@@ -24,17 +24,12 @@ def preprocess(reviews: list[dict]) -> pd.DataFrame:
             continue
 
         rows.append({
-            "recommendation_id": review["recommendationid"],
+            "review_id": review["recommendationid"],
             "review": text,
             "voted_up": review["voted_up"],
             "votes_up": review["votes_up"],
-            "weighted_vote_score": review["weighted_vote_score"],
             "timestamp_created": review["timestamp_created"],
-            "steam_purchase": review["steam_purchase"],
-            "received_for_free": review["received_for_free"],
             "refunded": review["refunded"],
-            "written_during_early_access": review["written_during_early_access"],
-            "primarily_steam_deck": review["primarily_steam_deck"],
             "playtime_at_review": review["author"]["playtime_at_review"],
         })
 
