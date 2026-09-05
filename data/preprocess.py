@@ -5,7 +5,7 @@ import pandas as pd
 
 
 RAW_FILE = Path("raw/reviews.json")
-OUTPUT_FILE = Path("processed/reviews.csv")
+OUTPUT_FILE = Path("processed/reviews_english.csv")
 
 
 def load_reviews(path: Path) -> list[dict]:
@@ -22,7 +22,9 @@ def preprocess(reviews: list[dict]) -> pd.DataFrame:
         # Ignore reviews without text
         if not text:
             continue
-
+        if review["language"] != "english":
+            continue
+    
         rows.append({
             "review_id": review["recommendationid"],
             "review": text,
@@ -31,6 +33,7 @@ def preprocess(reviews: list[dict]) -> pd.DataFrame:
             "timestamp_created": review["timestamp_created"],
             "refunded": review["refunded"],
             "playtime_at_review": review["author"]["playtime_at_review"],
+            "language": review["language"]
         })
 
     return pd.DataFrame(rows)
