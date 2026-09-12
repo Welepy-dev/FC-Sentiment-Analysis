@@ -5,7 +5,7 @@ import pandas as pd
 
 
 RAW_FILE = Path("raw/reviews.json")
-OUTPUT_FILE = Path("processed/reviews_english.csv")
+OUTPUT_FILE = Path("processed/reviews_clean.parquet")
 
 
 def load_reviews(path: Path) -> list[dict]:
@@ -22,9 +22,7 @@ def preprocess(reviews: list[dict]) -> pd.DataFrame:
         # Ignore reviews without text
         if not text:
             continue
-        if review["language"] != "english":
-            continue
-    
+
         rows.append({
             "review_id": review["recommendationid"],
             "review": text,
@@ -47,7 +45,7 @@ def main():
     df = preprocess(reviews)
 
     OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
-    df.to_csv(OUTPUT_FILE, index=False)
+    df.to_parquet(OUTPUT_FILE, index=False)
 
     print(f"Processed {len(df):,} reviews")
     print(f"Removed {len(reviews) - len(df):,} empty reviews")
