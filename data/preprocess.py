@@ -5,7 +5,7 @@ import pandas as pd
 
 
 RAW_FILE = Path("raw/reviews.json")
-OUTPUT_FILE = Path("processed/reviews_clean.parquet")
+OUTPUT_FILE = Path("raw/raw_data.parquet")
 
 
 def load_reviews(path: Path) -> list[dict]:
